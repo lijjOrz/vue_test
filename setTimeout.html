@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>test</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+        <div id = "app">
+            <button v-on:click="greet">{{message}}</button>
+            <p>60秒倒计时：还有 {{times}} 秒</p>
+            <button v-on:click="reload">点击刷新</button>
+        </div>
+    <script>
+        var t
+        var vm = new Vue({
+            el:'#app',
+            data:{
+                message: '开始',
+                times: 60
+            },
+            methods: {
+                timedCount: function(){
+                    if(this.times == 0){
+                        return
+                        // clearTimeout(t)
+                    }
+                    this.times -= 1
+                    t = setTimeout(this.timedCount,1000)
+                },
+                stopCount: function(){
+                    clearTimeout(t)
+                },
+                greet: function(){
+                    if(this.message === '开始'){
+                        this.message = '结束'
+                        this.timedCount()
+                    }else{
+                        this.message ='开始'
+                        this.stopCount()
+                    }
+                },
+                reload: function(){
+                    window.location.reload()
+                }
+            }
+       })
+    </script>
+</body>
+</html>

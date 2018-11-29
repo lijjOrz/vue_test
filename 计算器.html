@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>计算器</title>
+    <style>
+        input{
+            width: 100px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div id="jia">
+        <input v-model="message1" placeholder="请输入数字">
+        <select v-model="value">
+            <option v-for="item in items">{{item.message}}</option>
+        </select>
+        <input v-model="message2" placeholder="请输入数字">
+        <span> = </span>
+        <input v-model="sum" placeholder="结果">
+        <!-- <button v-on:click="jisuan1">确定</button> -->
+    </div>
+    <script>
+        var vm = new Vue({
+            el:"#jia",
+            data:{
+                message1: '',
+                message2: '',
+                // sum: ''
+                items:[
+                    {message: '+'},
+                    {message: '-'},
+                    {message: 'x'},
+                    {message: '/'}
+                ],
+                value: ''
+            },
+            computed:{
+                sum: function(){
+                    var one = this.message1
+                    var two = this.message2
+                    // return this.value
+                    // return Number(this.message1) + Number(this.message2)
+                    var n = this.value
+                    var num = ''
+                    if(one != '' && two != '' && n != ''){
+                        switch(n){
+                            case "+" :
+                            num = Number(this.message1) + Number(this.message2)
+                            break;
+                            case "-" :
+                            num = Number(this.message1) - Number(this.message2)
+                            break;
+                            case "x" :
+                            num = Number(this.message1) * Number(this.message2)
+                            break;
+                            case "/" :
+                            num = Number(this.message1) / Number(this.message2)
+                            break;
+                        }
+                        if( num * 0 == 0){
+                            return num
+                        }
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

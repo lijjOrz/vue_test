@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="components-demo">
+        <div v-bind:style="{fontSize: hFontSize + 'px'}">
+            <button-counter v-for='item in items' v-bind:key='item.id' v-bind:hh='item'></button-counter>
+        </div>
+    </div>
+
+    <script>
+        
+        Vue.component('button-counter', {
+            data: function () {
+                return {
+                    count: 0 ,
+                }
+            },
+            props:['hh'],
+            template: `
+                <div>
+                    <button v-on:click="arr">You clicked me {{count}} times.{{hh.h}}</button>
+                    <button v-on:click="$emit('change-text')">
+                        hhhhh
+                    </button>
+                </div>
+            `,
+            
+            methods:{
+                arr:function(){
+                    this.count += 1
+                    this.hh.h = this.hh.h + 1
+                    // console.log(this.hh)
+                }
+            }
+        })
+        
+        new Vue({ 
+            el: '#components-demo',
+            data:{
+                items:[
+                        {id:1, h:1},
+                        {id:2, h:2},
+                        {id:3, h:3},
+                    ],
+                hFontSize:1,
+            },            
+        })
+
+    </script>
+</body>
+</html>

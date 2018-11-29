@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <title>Document</title>
+    <style>
+        .circle{
+            width: 100px;
+            height: 100px;
+            border: 1px #f00 solid;
+            display:-webkit-box;
+            -webkit-box-pack:center;
+            -webkit-box-align:center;
+
+        }
+        .douyu{
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="circle">
+        <div class="circle">
+            <img  v-if='show' v-bind:style="{ borderRadius: radius*0.25 + 'px', opacity: touming * 0.01}" src="https://infinityicon.infinitynewtab.com/user-share-icon/66f3d54ad9a6e62fbcb13bbf96211f67.png?imageMogr2/thumbnail/240x/format/webp/blur/1x0/quality/100|imageslim" alt="">
+        </div>
+        <input v-model='radius' type="range">
+        <input v-model='touming' type="range">
+        <input type="checkbox" v-model='show'>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#circle',
+            data: {
+                radius: 0,
+                touming: 50,
+                show: true
+            }
+        })
+    </script>
+</body>
+</html>

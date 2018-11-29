@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+    <title>留言板</title>
+</head>
+<body>
+    <div id="liuyan">
+        <!-- <textarea v-model="value" v-on:keydown.enter.ctrl='push' cols="40" rows=5></textarea> -->
+        <ul style="list-style: none">
+            <li v-for="(item, index) in items">
+                    <span>{{item.name}} - {{item.sex}}</span> 
+                    <button v-on:click='clear(index)'>X</button>
+                    <button v-on:click="make(item.name , item.sex, index)">修改</button>              
+            </li>
+        </ul>
+        <div v-if='show'>
+            <span>name: </span><input v-model='arrname'>
+            <span>sex: </span><input v-model='arrsex'>
+            <button v-on:click='change'>确定</button>
+            <button v-on:click='quxiao'>取消</button>
+        </div>
+    </div>
+    <script>    
+        var vm = new Vue({
+            el:'#liuyan',
+            data:{
+                value:'',
+                items:[
+                    // {name: 'jdskfh', sex: '男'},
+                    // {name: 'ewrw', sex: '男'},
+                    // {name: 'hkjk', sex: '女'}
+                ],
+                show: true,
+                arrname:'',
+                arrsex:'',
+                num: 0,
+                obj:{
+                    name:'',
+                    sex:''
+                }
+            },
+            methods:{
+                push:function(){
+                    var array = this.value.split(' ')
+                    console.log(array)
+                    // this.obj.name = array[0]
+                    // this.obj.sex = array[1]
+                    var obj1 = {
+                        name:'',
+                        sex:''
+                    }
+                    obj1.name = array[0]
+                    obj1.sex = array[1]
+                    this.items.push(obj1)
+                    this.value = ''
+                },
+                clear:function(i){
+                    this.items.splice(i,1)
+                },
+                make:function(val, res, evl){
+                    this.show = true
+                    this.arrname = val
+                    this.arrsex = res
+                    this.num = evl
+                },
+                change: function(){
+                    if(this.arrname && this.arrsex){
+                        this.items[this.num].sex = this.arrsex
+                        this.items[this.num].name = this.arrname
+                        this.show = false
+                    }else{
+                        alert('属性不能为空')
+                    }
+                },
+                quxiao:function(){
+                    this.show = false
+                }
+
+            }
+
+        })
+    </script>
+</body>
+
+</html>

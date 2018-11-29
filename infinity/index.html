@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>infinity</title>
+    <link rel="stylesheet" href="./css/infinity.css">
+    <script src="https://cdn.bootcss.com/vue/2.2.2/vue.min.js"></script>
+</head>
+<body>
+    <div id="bodybg">
+
+        <div v-bind:style="backgroundstyle">
+
+            <div class="header" v-show="onoffkgs">
+                <div class="title">
+                   <div class="title-font" v-for='item in items' v-bind:style="{color: wenzicolor}">{{item.message}}</div>
+                </div>
+                <div class="shousuo">
+                    <div class="shousuo-tb"><img src="https://infinity-permanent.infinitynewtab.com/infinity/search-add/baidu.png?imageView2/0/format/webp/q/100" alt=""></div>
+                    <input type="text" placeholder="请输入...">
+                </div>
+            </div>
+
+            <div class="criclek" v-bind:class="{cripadding: onoffkgs}">
+                <div class="kuang" v-for="cricle in cricles">
+                    <div class="criclek-tu"><img v-bind:class="{boxshadow: onoffkg}" v-bind:style="{borderRadius: radius*0.5 + 'px', opacity: touming*0.01}" src="https://infinityicon.infinitynewtab.com/user-share-icon/66f3d54ad9a6e62fbcb13bbf96211f67.png?imageMogr2/thumbnail/240x/format/webp/blur/1x0/quality/100|imageslim" alt=""></div>
+                    <div class="criclek-zi" v-bind:style='{opacity: touming*0.01, color: wenzicolor}' v-bind:class="{textshadow: onoffkgz}">图标</div>
+                </div>
+            </div>
+            <!-- 点击左侧设置栏收放 -->
+            <div class="dj" v-on:click='showon'></div>
+            
+            <div class="left" v-bind:class='{right: show}'>
+                
+                <div class="left-tbk">  
+                    <p class="tbk-title">图标</p>
+                    <div class="tbk-li">
+                        <span>图标阴影</span>
+                        <div class="on-off" v-on:click="onoff"  v-bind:class="{onofft: onoffkg}">
+                            <div class="cricle-on-off"  v-bind:class="{cricleonofft: onoffkg}"></div>
+                        </div>
+                    </div>
+                    <div class="tbk-li">
+                        <span>文字阴影</span>
+                        <div class="on-off" v-on:click="onoffz"  v-bind:class="{onofft: onoffkgz}">
+                            <div class="cricle-on-off"  v-bind:class="{cricleonofft: onoffkgz}"></div>
+                        </div>
+                    </div>
+                    <div class="tbk-li">
+                        <span>图标圆角</span>
+                        <input type="range" v-model='radius'>
+                    </div>
+                    <div class="tbk-li">
+                        <span>图标不透明度</span>
+                        <input type="range" v-model="touming">
+                    </div>
+                </div>
+
+                <div class="left-tbk">
+                        <p class="tbk-title">文字</p>
+
+                        <div class="tbk-li">
+                            <span>隐藏搜索框</span>
+                            <div class="on-off" v-on:click="onoffs"  v-bind:class="{onofft: onoffkgs}">
+                                <div class="cricle-on-off"  v-bind:class="{cricleonofft: onoffkgs}"></div>
+                            </div>
+                        </div>
+
+                        <div class="tbk-li">
+                            <span>文字颜色</span>
+                            <div class="colordiv">
+                                <div class="cricleborder" v-for="(item, index) in colorcricles" v-bind:style="{borderColor: item.color}" v-bind:class="{borderpx: item.onoffcolor}">
+                                    <div class="criclecolor" v-bind:style="{background: item.color}" v-on:click="onoffcolor(index)"></div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- 左侧点击背景事件 -->
+            <div class="leftbackground" v-on:click="showoff" v-show="show"></div>
+
+        </div>
+
+    </div>
+    
+    <script type="text/javascript" src="./js/infinity.js"></script>
+</body>
+</html>

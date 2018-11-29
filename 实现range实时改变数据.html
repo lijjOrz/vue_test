@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .divclass{
+            width:100px;
+            height: 100px;
+            border: 1px solid #f00;
+            display:-webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+        <div id="div1" class="divclass">
+            <span>4234</span>
+        </div> 
+
+        <input type="range" id='inputv' step="1">
+<script>
+
+    // 添加时钟setInterval()事件实现数据实时改变
+    setInterval("valuefun()",0.01)
+    function valuefun(){
+        var value1 = document.getElementById('inputv').value
+        document.getElementById('div1').style.width = value1 + 'px'
+    }
+</script>
+    
+</body>
+</html>
